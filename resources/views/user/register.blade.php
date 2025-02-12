@@ -30,11 +30,19 @@
         @method('PATCH')
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Username
+            First and last name
           </label>
           <input type="text" required
                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
                         bg-white dark:bg-gray-800 text-gray-900 dark:text-white" name="name" value="{{ old('name') }}">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            username
+          </label>
+          <input type="text" required
+                 class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
+                        bg-white dark:bg-gray-800 text-gray-900 dark:text-white" name="username" value="{{ old('username') }}">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

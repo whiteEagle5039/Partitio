@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SongsController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +23,7 @@ Route::get('/building', function () {
  *****************************************/
 //Route::get('/', 'home')->name('home')->controller(HomeController::class);
 
-Route::prefix('/home')->name('acceuil.')->controller(HomeController::class)->group(function(){
+Route::prefix('/')->name('acceuil.')->controller(HomeController::class)->group(function(){
     Route::get('/', 'home')->name('home');
 });
 
@@ -36,6 +38,19 @@ Route::prefix('/user')->name('auth.')->controller(AuthController::class)->group(
     Route::patch('/inscription', 'doinscription');
     //..ajouts de routes postes
 
+});
+
+/**********************
+ * route admins
+***********************/
+Route::prefix('/admins')->name('admins.')->controller(AdminController::class)->group(function(){
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/songs', 'songs')->name('songs');
+    Route::get('/users', 'users')->name('users');
+    Route::get('/communities', 'communities')->name('communities');
+    Route::get('/courses', 'courses')->name('courses');
+    Route::get('/transactions', 'transactions')->name('transactions');
+    Route::get('/settings', 'settings')->name('settings');
 });
 
 /************************************
@@ -63,6 +78,8 @@ Route::prefix('/Community')->name('community.')->controller(CommunityController:
 /************************************
  * Route profile
  ************************************/
-Route::prefix('/Profil')->name('profil.')->controller(AuthController::class)->group(function(){
-    Route::get('/', 'profil')->name('home');
+Route::prefix('/profil')->name('profil.')->controller(ProfileController::class)->group(function(){
+    Route::get('/show/{slug}', 'show')->name('home');
+   // Route::delete('/', 'dologout');
+
 });

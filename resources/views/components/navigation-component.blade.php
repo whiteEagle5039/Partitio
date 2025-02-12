@@ -15,13 +15,19 @@
                     </div>
                 </div>
                 <div class="flex items-center">
+                    
                     <button id="theme-toggle" class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <i data-lucide="sun" class="hidden dark:block h-5 w-5"></i>
-                    <i data-lucide="moon" class="block dark:hidden h-5 w-5"></i>
+                        <i data-lucide="sun" class="hidden dark:block h-5 w-5"></i>
+                        <i data-lucide="moon" class="block dark:hidden h-5 w-5"></i>
                     </button>
-                    <a href="{{ route('profil.home') }}" class="ml-4">
-                    <img class="h-8 w-8 rounded-full" src="https://github.com/shadcn.png" alt="Profile">
-                    </a>
+                    @auth
+                        <a href="{{ route('profil.home', ['slug'=>\Illuminate\Support\Facades\Auth::user()->username]) }}" class="ml-4">
+                             <img class="h-8 w-8 rounded-full" src="https://github.com/shadcn.png" alt="Profile">
+                        </a>
+                    @endauth
+                    @guest
+                        <button class="text-gray-600 p-2 rounded-lg ml-4 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 "><a href="{{ route('auth.login') }}">Se connecter</a></button>
+                    @endguest
                     <!-- Mobile menu button -->
                     <button id="mobile-menu-button" class="md:hidden ml-4 text-gray-600 dark:text-gray-300">
                         <i data-lucide="menu" class="h-6 w-6"></i>

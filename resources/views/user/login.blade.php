@@ -2,6 +2,16 @@
 @section('title', 'Partitio | LOGIN ')
 @section('container')
 <body class="bg-gray-50 dark:bg-gray-900">
+    @error("password")
+    <p>{{ "Mot de pass Invalid" }}</p>
+    @enderror
+    @error("email")
+      <p>{{ "Email invalid" }}</p> 
+    @enderror
+    @if(session('inscription'))
+    <p>{{session('inscription')}}</p>
+    @endif
+
     <div class="min-h-screen flex items-center justify-center px-4">
       <div class="max-w-md w-full">
         <!-- Logo -->
@@ -12,7 +22,7 @@
           </div>
           <p class="mt-2 text-gray-600 dark:text-gray-400">Welcome back! Please login to your account.</p>
         </div>
-  
+
         <!-- Login Form -->
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
           <form class="space-y-4" method="POST" autocomplete="off">
@@ -24,7 +34,7 @@
               </label>
               <input type="email" required
                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg 
-                            bg-white dark:bg-gray-800 text-gray-900 dark:text-white" name="email">
+                            bg-white dark:bg-gray-800 text-gray-900 dark:text-white" name="email" value="{{ old('email') }}">
             </div>
             
             <div>

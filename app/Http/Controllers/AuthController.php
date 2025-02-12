@@ -20,8 +20,8 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(route('acceuil.home'));
         }
-        return to_route('auth.login')->withErrors([
-            'error'=>'email ou mot de pass invalid !'
+        return to_route('auth.login')->with([
+            'errorLogin'=>'email ou mot de pass invalid !'
         ])->onlyInput('email');
     }
     public function AuthInscription(){
@@ -35,6 +35,10 @@ class AuthController extends Controller
     }
     public function profil(){
         return view('user.profile');
+    }
+    public function dologout(){
+        Auth::logout();
+        return redirect()->route('acceuil.home');
     }
 }
     
